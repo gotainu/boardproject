@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<div class="alert alert-primary" role="alert">
-    <h3>投稿内容を書くページ📄</h3>
+<div class="alert alert-danger" role="alert">
+    <h3>❗現在工事中❗健康記録のページ</h3>
     <a href="{% url 'list' %}" class="btn btn-info" role="button" aria-pressed="true">掲示板に戻る🔼</a>
-    <a href="{% url 'logout' %}" class="btn btn-info" role="button" aria-pressed="true">ログアウト🚪</a>
+    <a href="{% url 'health' %}" class="btn btn-info" role="button" aria-pressed="true">ログアウト🚪</a>
 </div>
 
 {% endblock header %}
@@ -12,8 +12,9 @@
 {% block content %}
 {% if user.is_authenticated %}
 <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-    <p>ご相談タイトル🐹：<input type="text" name="title"></p>
-    <p>ご相談内容📄：<input type="text" name="content"></p>
+    <p>日にち📆：<input type="text" name="title"></p>
+    <p>今日のコンディション📄：<input type="text" name="content"></p>
+    <p>エサの種類🍅：<input type="text" name="content"></p>
     <p>あなたのお名前😊：{{user.username}} さん</p>
     <input type="hidden" name="author" value="{{user.username}}">
     <p>お写真📷：<input type="file" name="snsimage"></p>

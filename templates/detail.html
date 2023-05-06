@@ -15,7 +15,8 @@
 <div class="container">
     <div class="alert alert-success" role="alert">
         <p>ご相談タイトル🐹：{{object.title}}</p>
-        <p>あなたのお名前😊：{{object.author}}</p>
+        <p>投稿者のお名前😊：{{object.author}}</p>
+        <p>ご相談内容📓：{{object.content}}</p>
         <p><img src="{{ object.snsimage.url }}" width="300"></p>
         <a href="{% url 'good' object.pk%}" class="btn btn-primary" role="button" aria-pressed="true">いいね👍</a>
         <a href="{% url 'read' object.pk%}" class="btn btn-secondary" role="button" aria-pressed="true">既読にする📗</a>

@@ -6,6 +6,11 @@ from .models import BoardModel
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
+from django.http import HttpResponse
+
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
 
 # Create your views here.
 def signupfunc(request):
@@ -14,7 +19,8 @@ def signupfunc(request):
         password = request.POST['password']
         try:
             user = User.objects.create_user(username,'',password)
-            return render(request, 'signup.html', {'some':1000}) 
+            #return render(request, 'signup.html', {'some':1000}) 
+            return redirect("login")
         except IntegrityError:
             return render(request, 'signup.html', {'error':'This user name is already registered.'}) 
         
@@ -67,6 +73,12 @@ def readfunc(request, pk):
 
 class Boardcreate(CreateView):
     template_name = 'create.html'
+    model = BoardModel
+    fields = ('title','content','author','snsimage')
+    success_url = reverse_lazy('list')
+
+class Healthcreate(CreateView):
+    template_name = 'health.html'
     model = BoardModel
     fields = ('title','content','author','snsimage')
     success_url = reverse_lazy('list')
