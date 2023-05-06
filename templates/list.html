@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+    <h3>みんなの掲示板🐹</h3>
+</div>
+<a href="{% url 'create' %}" class="btn btn-info" role="button" aria-pressed="true">投稿作成🎨</a>
+<a href="{% url 'create' %}" class="btn btn-info" role="button" aria-pressed="true">健康記録📝</a>
+<a href="{% url 'logout' %}" class="btn btn-info" role="button" aria-pressed="true">ログアウト🚪</a>
+{% endblock header %}
+
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    {% for item in object_list %}
+    <div class="alert alert-success" role="alert">
+        <p>ご相談タイトル🐹：<a href="{% url 'detail' item.pk %}">{{item.title}}</a></p>
+        <p>あなたのお名前😊：{{item.author}}</p>
+        <a href="#" class="btn btn-primary disabled" role="button" aria-pressed="true">いいねの数👍：{{item.good}}個</a>
+        <a href="#" class="btn btn-secondary disabled" role="button" aria-pressed="true">既読の数📗：{{item.read}}個</a>
+     </div>
+    {% endfor %}
+</div>
+{% else %}
+You are not logged in yet! Please login first!
+{% endif %} 
+{% endblock content %} 

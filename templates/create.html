@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+    <h3>投稿内容を書くページ📄</h3>
+</div>
+
+{% endblock header %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <p>ご相談タイトル🐹：<input type="text" name="title"></p>
+    <p>ご相談内容📄：<input type="text" name="content"></p>
+    <p>あなたのお名前😊：{{user.username}} さん</p>
+    <input type="hidden" name="author" value="{{user.username}}">
+    <p>参考のお写真📷：<input type="file" name="snsimage"></p>
+    <input type="submit" value="create">
+</form>
+{% else %}
+You are not logged in yet! Please login first! 
+<a href="{% url 'login' %}" >loginはこちらから</a>
+{% endif %} 
+{% endblock content %}
+

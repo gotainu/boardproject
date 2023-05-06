@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+    <h3>詳細ページ</h3>
+</div>
+<a href="{% url 'list' %}" class="btn btn-info" role="button" aria-pressed="true">一覧ページ📗</a>
+<a href="{% url 'logout' %}" class="btn btn-info" role="button" aria-pressed="true">ログアウト🚪</a>
+{% endblock header %}
+
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="alert alert-success" role="alert">
+        <p>ご相談タイトル🐹：{{object.title}}</p>
+        <p>あなたのお名前😊：{{object.author}}</p>
+        <p><img src="{{ object.snsimage.url }}" width="300"></p>
+        <a href="{% url 'good' object.pk%}" class="btn btn-primary" role="button" aria-pressed="true">いいね👍</a>
+        <a href="{% url 'read' object.pk%}" class="btn btn-secondary" role="button" aria-pressed="true">既読にする📗</a>
+    </div>
+</div>
+{% else %}
+You are not logged in yet! Please login first!
+{% endif %} 
+{% endblock content %}
